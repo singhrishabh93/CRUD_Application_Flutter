@@ -1,17 +1,49 @@
+// 39
 import 'package:flutter/material.dart';
+import 'package:flutter_application_crud/createData.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: "MyFirstApp",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: DashboardScreen(),
     );
   }
 }
 
+class DashboardScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("CRUD Application"),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return POST();
+                  }));
+                },
+                child: const Text("CREATE")),
+            ElevatedButton(onPressed: () {}, child: const Text("READ")),
+            ElevatedButton(onPressed: () {}, child: const Text("UPDATE")),
+            ElevatedButton(onPressed: () {}, child: const Text("DELETE"))
+          ],
+        ),
+      ),
+    );
+  }
+}
