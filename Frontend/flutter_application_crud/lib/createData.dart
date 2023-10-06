@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_crud/services/api.dart';
 
 class POST extends StatefulWidget {
   const POST({super.key});
@@ -7,9 +8,9 @@ class POST extends StatefulWidget {
   State<POST> createState() => _POSTState();
 }
 
-TextEditingController name = TextEditingController();
-TextEditingController price = TextEditingController();
-TextEditingController desc = TextEditingController();
+TextEditingController nameController = TextEditingController();
+TextEditingController emailController = TextEditingController();
+TextEditingController descController = TextEditingController();
 
 class _POSTState extends State<POST> {
   @override
@@ -21,27 +22,37 @@ class _POSTState extends State<POST> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
-              controller: name,
+              controller: nameController,
               decoration: const InputDecoration(label: Text("Name")),
             ),
             const SizedBox(
               height: 50,
             ),
             TextField(
-              controller: price,
+              controller: emailController,
               decoration: const InputDecoration(label: Text("Email")),
             ),
             const SizedBox(
               height: 50,
             ),
             TextField(
-              controller: desc,
+              controller: descController,
               decoration: const InputDecoration(label: Text("Designation")),
             ),
             const SizedBox(
               height: 50,
             ),
-            ElevatedButton(onPressed: () {}, child: const Text("POST"))
+            ElevatedButton(
+                onPressed: () {
+                  var data = {
+                    "pname": nameController.text,
+                    "pemail": emailController.text,
+                    "pdesc": descController.text,
+                  };
+
+                  Api.addUser(data);
+                },
+                child: const Text("Create Data"))
           ],
         ),
       ),
